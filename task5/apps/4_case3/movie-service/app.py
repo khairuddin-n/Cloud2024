@@ -8,6 +8,10 @@ movies = [
     {"id": 3, "name": "Movie C", "rating": 9.0}
 ]
 
+@app.route('/', methods=['GET'])
+def home():
+    return "Movie Service is running!"
+
 @app.route('/movies', methods=['GET'])
 def get_movies():
     return jsonify(movies)

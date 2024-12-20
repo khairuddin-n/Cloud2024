@@ -3,9 +3,14 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 users = [
-    {"user_id": 1, "name": "Alice"},
-    {"user_id": 2, "name": "Bob"}
+    {"id": 1, "name": "User A"},
+    {"id": 2, "name": "User B"},
+    {"id": 3, "name": "User C"}
 ]
+
+@app.route('/', methods=['GET'])
+def home():
+    return "User Service is running!"
 
 @app.route('/users', methods=['GET'])
 def get_users():
