@@ -1,0 +1,20 @@
+---
+- name: Install MySQL and PHPMyAdmin
+  apt:
+    name:
+      - mysql-server
+      - phpmyadmin
+    state: present
+
+- name: Configure MySQL root password
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    state: present
+
+- name: Create PHPMyAdmin configuration
+  template:
+    src: phpmyadmin.conf.j2
+    dest: /etc/apache2/conf-available/phpmyadmin.conf
+  notify: restart apache
