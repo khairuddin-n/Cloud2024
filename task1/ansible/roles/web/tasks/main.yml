@@ -19,7 +19,7 @@
 
 - name: Clone website repository
   git:
-    repo: "https://github.com/rm77/web-sample-6.git"
+    repo: "{{ website_repo }}"
     dest: /var/www/html/
     force: yes
 
