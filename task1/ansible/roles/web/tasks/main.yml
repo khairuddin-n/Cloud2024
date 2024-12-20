@@ -1,0 +1,30 @@
+---
+- name: Install Apache and PHP packages
+  apt:
+    name:
+      - apache2
+      - php
+      - php-mysql
+      - php-mbstring
+      - libapache2-mod-php
+    state: present
+
+- name: Enable Apache modules
+  apache2_module:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - rewrite
+    - php
+
+- name: Clone website repository
+  git:
+    repo: "https://github.com/rm77/web-sample-6.git"
+    dest: /var/www/html/
+    force: yes
+
+- name: Configure Apache virtual host
+  template:
+    src: apache.conf.j2
+    dest: /etc/apache2/sites-available/000-default.conf
+  notify: restart apache
