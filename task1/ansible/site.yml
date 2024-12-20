@@ -1,0 +1,14 @@
+---
+- name: Configure Web Servers
+  hosts: webservers
+  become: yes
+  roles:
+    - common
+    - web
+
+- name: Configure Database Servers
+  hosts: dbservers
+  become: yes
+  roles:
+    - common
+    - database
