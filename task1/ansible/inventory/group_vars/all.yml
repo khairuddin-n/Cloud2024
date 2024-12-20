@@ -1,0 +1,4 @@
+---
+mysql_root_password: "secure_password123"
+website_repo: "https://github.com/rm77/web-sample-6.git"
+domain_name: "example.com"
